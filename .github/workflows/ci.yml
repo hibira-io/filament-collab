@@ -1,0 +1,51 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - filament: "^3.0"
+            testbench: "8.*"
+            php: "8.2"
+          - filament: "^3.0"
+            testbench: "9.*"
+            php: "8.2"
+          - filament: "^4.0"
+            testbench: "10.*"
+            php: "8.3"
+          - filament: "^5.0"
+            testbench: "10.*"
+            php: "8.3"
+          - filament: "^5.0"
+            testbench: "11.*"
+            php: "8.4"
+    name: Filament ${{ matrix.filament }} / Testbench ${{ matrix.testbench }} / PHP ${{ matrix.php }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: intl
+          coverage: none
+      - name: Install
+        env:
+          COMPOSER_NO_SECURITY_BLOCKING: "1"
+        run: |
+          # Older Laravel and Filament releases have security advisories, and
+          # Composer refuses those by default. They are tested on purpose;
+          # apps choose their own versions.
+          php -r '$c = json_decode(file_get_contents("composer.json"), true); $c["config"]["audit"]["block-insecure"] = false; $c["config"]["policy"]["advisories"]["block"] = false; file_put_contents("composer.json", json_encode($c, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));'
+          composer require "filament/filament:${{ matrix.filament }}" --no-interaction --no-update
+          composer require --dev "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress --with-all-dependencies
+      - run: vendor/bin/phpunit

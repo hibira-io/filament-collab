@@ -1,0 +1,22 @@
+{
+  "name": "@hibira-io/filament-collab-assets",
+  "version": "1.0.0",
+  "description": "Browser bundle for hibira-io/filament-collab",
+  "scripts": {
+    "test": "node --test resources/js/tests/",
+    "build": "esbuild resources/js/collab.js --bundle --minify --format=esm --target=es2020 --outfile=resources/dist/hibira-collab.js && esbuild resources/css/collab.css --minify --outfile=resources/dist/hibira-collab.css"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@tiptap/core": "^3.32.2",
+    "@tiptap/extension-collaboration": "^3.32.2",
+    "@tiptap/extension-collaboration-caret": "^3.32.2",
+    "@tiptap/extension-placeholder": "^3.32.2",
+    "@tiptap/pm": "^3.32.2",
+    "@tiptap/starter-kit": "^3.32.2",
+    "esbuild": "^0.28.2",
+    "y-protocols": "^1.0.7",
+    "yjs": "^13.6.33"
+  },
+  "private": "true"
+}
