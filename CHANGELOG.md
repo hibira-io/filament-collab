@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- Works with hibira-io/filament 0.3 as well as 0.2, so `composer require`
+  no longer fails on an app that already has the latest hibira-io/filament.
+
 ## 0.1.0
 
 - `CollaborativeEditor`: a rich text field several people can edit at once,
