@@ -31,7 +31,7 @@
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0|^4.0|^5.0",
-        "hibira-io/filament": "^0.2",
+        "hibira-io/filament": "^0.2|^0.3",
         "hibira-io/laravel": "^0.1|^0.2",
         "pusher/pusher-php-server": "^7.2"
     },
