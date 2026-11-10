@@ -1,6 +1,6 @@
 # hibira-io/filament-collab
 
-![Collaborative Editor for Filament](art/cover.jpg)
+<img src="art/cover.jpg" alt="Collaborative Editor for Filament" class="filament-hidden">
 
 [![ci](https://github.com/hibira-io/filament-collab/actions/workflows/ci.yml/badge.svg)](https://github.com/hibira-io/filament-collab/actions/workflows/ci.yml)
 
