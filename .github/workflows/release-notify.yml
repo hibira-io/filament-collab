@@ -11,5 +11,5 @@ permissions: {}
 
 jobs:
   slack:
-    uses: hibira-io/.github/.github/workflows/release-slack.yml@main
+    uses: hibira-io/.github/.github/workflows/release-slack.yml@101e7bd527e65d6de3092d40d28917ea72aeb1ed # main
     secrets: inherit
